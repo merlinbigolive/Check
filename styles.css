@@ -1,0 +1,40 @@
+*{box-sizing:border-box}
+:root{--gold:#ffd15f;--navy:#020b19}
+html,body{margin:0;min-height:100%;background:#020914;font-family:Arial,Helvetica,sans-serif}
+body{overflow-x:hidden}
+.landing{position:relative;isolation:isolate;width:100%;max-width:1500px;margin:0 auto;aspect-ratio:1088/1390;min-height:680px;overflow:hidden;background:#03172e}
+.reference-art{position:absolute;inset:0;z-index:-3;background-image:url("hero.jpg");background-size:100% 100%;background-position:center;background-repeat:no-repeat}
+/* Replace the original poster's marketplace strip with neutral site information. */
+.topbar{position:absolute;z-index:2;top:0;left:0;right:0;height:5.3%;display:flex;align-items:center;justify-content:space-around;gap:8px;padding:0 3.5%;background:linear-gradient(90deg,rgba(1,10,24,.98),rgba(3,20,44,.98));border-bottom:1px solid rgba(255,211,106,.5);color:#f7f7fb}
+.topbar>div{display:flex;align-items:center;justify-content:center;gap:9px;min-width:0;font-size:clamp(8px,1.05vw,14px);font-weight:650;white-space:nowrap}
+.topbar>div+div{border-left:1px solid rgba(139,187,221,.45);padding-left:3%}
+.icon{color:var(--gold);font-size:clamp(15px,2vw,25px);line-height:1}
+/* This panel covers only the printed price in the reference art. */
+.purchase{position:absolute;z-index:3;left:20%;width:60%;top:26.4%;height:13.5%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(5,35,66,.04),rgba(5,31,57,.96) 18%,rgba(5,31,57,.96) 83%,rgba(5,35,66,.04));}
+.buy-button{width:min(100%,500px);min-height:78px;height:70%;display:flex;align-items:center;justify-content:center;gap:13px;padding:10px 20px;border-radius:999px;text-decoration:none;color:#071326;text-align:center;background:linear-gradient(180deg,#ffe58d 0%,#f7c344 50%,#d9941b 100%);border:2px solid #fff0a8;outline:1px solid rgba(255,209,95,.65);box-shadow:0 0 0 5px rgba(255,199,67,.14),0 7px 25px rgba(0,0,0,.38),inset 0 2px 1px rgba(255,255,255,.8);transition:filter .2s,transform .2s}
+.buy-button:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.person{width:27px;flex:0 0 27px;display:flex;align-items:center}.person svg{width:27px;height:27px;fill:#061326}
+.button-copy{display:flex;flex-direction:column;align-items:center;gap:5px}
+.button-copy strong{font-size:clamp(16px,2.3vw,28px);font-weight:850;letter-spacing:.035em}
+.button-copy small{font-size:clamp(11px,1.2vw,15px);font-weight:650;letter-spacing:.035em}
+.bottom-cover{position:absolute;z-index:2;left:0;right:0;bottom:0;height:14%;background:linear-gradient(180deg,rgba(2,10,23,.94),#020a16 32%,#020914 100%);border-top:1px solid rgba(255,208,94,.18)}
+@media(min-width:1200px){.landing{min-height:0}}
+@media(max-width:700px){
+ .landing{aspect-ratio:auto;min-height:100svh;height:auto;padding-bottom:0}
+ .reference-art{background-size:100% 100%;background-position:center top}
+ .topbar{height:auto;min-height:46px;padding:8px 5px;gap:4px}
+ .topbar>div{font-size:clamp(6px,1.7vw,9px);gap:4px;white-space:normal;text-align:center;line-height:1.15}
+ .topbar>div+div{padding-left:5px}
+ .icon{font-size:15px;flex-shrink:0}
+ .purchase{left:10%;width:80%;top:26.4%;height:13.5%}
+ .buy-button{min-height:52px;padding:7px 12px;gap:8px;border-width:1px}
+ .person,.person svg{width:20px;height:20px;flex-basis:20px}
+ .button-copy{gap:3px}.button-copy strong{font-size:clamp(15px,4.3vw,21px)}.button-copy small{font-size:clamp(10px,2.8vw,13px)}
+ .bottom-cover{height:14%}
+}
+@media(max-width:390px){
+ .topbar>div{font-size:6px}
+ .purchase{left:7%;width:86%}
+ .button-copy strong{font-size:15px}
+ .button-copy small{font-size:10px}
+}
