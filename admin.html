@@ -1,59 +1,247 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vehikal.com — Visitor Analytics</title>
 <style>
 :root{color-scheme:light;--ink:#172337;--muted:#66758b;--gold:#d6a83e;--line:#e5e9ef;--bg:#f4f6f9}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}
 header{background:#fff;border-bottom:1px solid var(--line);padding:20px clamp(16px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.brand{font-weight:850;letter-spacing:.02em}.brand span{color:#b58618}.sub{font-size:12px;color:var(--muted);margin-top:3px}
-main{max-width:1200px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 8px 30px #17233708}
-.login{max-width:440px;margin:7vh auto}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#a67a14;font-weight:800}
-h1{font-size:clamp(24px,4vw,34px);line-height:1.15;margin:8px 0}p{color:var(--muted)}label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}
+.brand{font-weight:850;letter-spacing:.02em}.brand span{color:#b58618}
+.sub{font-size:12px;color:var(--muted);margin-top:3px}
+main{max-width:1200px;margin:28px auto;padding:0 16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 8px 30px #17233708}
+.login{max-width:440px;margin:7vh auto}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#a67a14;font-weight:800}
+h1{font-size:clamp(24px,4vw,34px);line-height:1.15;margin:8px 0}
+p{color:var(--muted)}
+label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}
 input{width:100%;padding:12px 13px;border:1px solid #d8dee8;border-radius:9px;font:inherit;background:white;color:var(--ink)}
-button{border:0;border-radius:9px;padding:11px 15px;font-weight:750;cursor:pointer;background:var(--ink);color:#fff}button.gold{background:linear-gradient(110deg,#e8c765,#c79628);color:#1d2634}button.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.error{color:#b42318;font-size:13px}.hidden{display:none!important}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}.stat small{color:var(--muted);font-weight:650}.num{font-size:30px;font-weight:850;margin-top:5px}
-.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0}.toolbar input{max-width:280px}.toolbar select{padding:11px;border:1px solid #d8dee8;border-radius:9px;background:#fff;font:inherit}
-.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:780px;background:#fff}th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}th{background:#f9fafb;color:#536176;white-space:nowrap}td{overflow-wrap:anywhere}.pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:800;background:#edf2f7}.pill.human{background:#e5f6eb;color:#17663a}.pill.bot{background:#fff0dc;color:#8b4a00}.status{font-size:13px;color:var(--muted);margin:12px 0}
+button{border:0;border-radius:9px;padding:11px 15px;font-weight:750;cursor:pointer;background:var(--ink);color:#fff}
+button.gold{background:linear-gradient(110deg,#e8c765,#c79628);color:#1d2634}
+button.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+button:disabled{opacity:.6;cursor:wait}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.error{color:#b42318;font-size:13px}.hidden{display:none!important}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.stat small{color:var(--muted);font-weight:650}
+.num{font-size:30px;font-weight:850;margin-top:5px}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.toolbar input{max-width:280px}
+.toolbar select{padding:11px;border:1px solid #d8dee8;border-radius:9px;background:#fff;font:inherit}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:780px;background:#fff}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:#f9fafb;color:#536176;white-space:nowrap}
+td{overflow-wrap:anywhere}
+.pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:800;background:#edf2f7}
+.pill.human{background:#e5f6eb;color:#17663a}
+.pill.bot{background:#fff0dc;color:#8b4a00}
+.status{font-size:13px;color:var(--muted);margin:12px 0}
 @media(max-width:620px){.stats{grid-template-columns:1fr}.panel{padding:17px}.num{font-size:26px}header{align-items:flex-start}}
 </style>
 </head>
 <body>
-<header><div><div class="brand">VEHIKAL<span>.COM</span> <span style="color:#66758b;font-weight:600">/ Analytics</span></div><div class="sub">Private visitor dashboard</div></div><button id="logout" class="ghost hidden">Log out</button></header>
+<header>
+  <div>
+    <div class="brand">VEHIKAL<span>.COM</span> <span style="color:#66758b;font-weight:600">/ Analytics</span></div>
+    <div class="sub">Private visitor dashboard</div>
+  </div>
+  <button id="logout" class="ghost hidden" type="button">Log out</button>
+</header>
+
 <main>
 <section id="loginPanel" class="panel login">
-<div class="eyebrow">Restricted access</div><h1>Visitor Analytics</h1><p>Sign in with the authorized dashboard account to view Vehikal.com traffic.</p>
-<form id="loginForm"><label for="email">Admin email</label><input id="email" type="email" autocomplete="username" required placeholder="admin@example.com"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required placeholder="Your password"><div class="actions"><button class="gold" type="submit">Sign in securely</button></div><div id="loginError" class="error" role="alert"></div></form>
+  <div class="eyebrow">Restricted access</div>
+  <h1>Visitor Analytics</h1>
+  <p>Enter your admin password to access Vehikal.com visitor analytics.</p>
+  <form id="loginForm">
+    <label for="password">Admin password</label>
+    <input id="password" type="password" autocomplete="current-password" required placeholder="Enter admin password">
+    <div class="actions">
+      <button id="loginButton" class="gold" type="submit">Sign in securely</button>
+    </div>
+    <div id="loginError" class="error" role="alert"></div>
+  </form>
 </section>
+
 <section id="dashboard" class="hidden">
-<div class="eyebrow">Overview</div><h1>Vehikal.com traffic</h1><p>Visitor records from the configured database. Reloading this dashboard does not create a visit.</p>
-<div class="stats"><div class="stat"><small>Total visits</small><div id="total" class="num">—</div></div><div class="stat"><small>Human visits</small><div id="humans" class="num">—</div></div><div class="stat"><small>Bot visits</small><div id="bots" class="num">—</div></div></div>
-<div class="panel"><div class="toolbar"><input id="search" placeholder="Search page, referrer, user agent…"><select id="kind"><option value="all">All visitors</option><option value="human">Humans</option><option value="bot">Bots</option></select><button id="refresh" class="gold">Refresh data</button><button id="reset" class="ghost">Reset records</button></div>
-<div id="status" class="status">Loading records…</div><div class="tablewrap"><table><thead><tr><th>Date / time</th><th>Type</th><th>Page</th><th>Referrer</th><th>User agent</th></tr></thead><tbody id="rows"></tbody></table></div></div>
+  <div class="eyebrow">Overview</div>
+  <h1>Vehikal.com traffic</h1>
+  <p>Reloading this dashboard does not create a visitor record.</p>
+
+  <div class="stats">
+    <div class="stat"><small>Total visits</small><div id="total" class="num">—</div></div>
+    <div class="stat"><small>Human visits</small><div id="humans" class="num">—</div></div>
+    <div class="stat"><small>Bot visits</small><div id="bots" class="num">—</div></div>
+  </div>
+
+  <div class="panel">
+    <div class="toolbar">
+      <input id="search" placeholder="Search city, country, referrer, browser…">
+      <select id="kind">
+        <option value="all">All visitors</option>
+        <option value="human">Humans</option>
+        <option value="bot">Bots</option>
+      </select>
+      <button id="refresh" class="gold" type="button">Refresh data</button>
+      <button id="reset" class="ghost" type="button">Reset records</button>
+    </div>
+    <div id="status" class="status">Sign in to load records.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Date / time</th><th>Type</th><th>City / Country</th><th>Referrer</th><th>User agent</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
 </section>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/visitor-config.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/visitor-config.js"></script>
 <script>
 (function(){
- const cfg=window.VEHIKAL_VISITOR_CONFIG||{};
- const valid=cfg.SUPABASE_URL&&cfg.SUPABASE_ANON_KEY&&!cfg.SUPABASE_URL.includes("PASTE_")&&!cfg.SUPABASE_ANON_KEY.includes("PASTE_");
- const loginPanel=document.getElementById('loginPanel'), dashboard=document.getElementById('dashboard'), logout=document.getElementById('logout');
- const err=document.getElementById('loginError'), status=document.getElementById('status'), rows=document.getElementById('rows');
- if(!valid){err.textContent='Setup required: add your Supabase URL and publishable/anon key to visitor-config.js.';document.querySelector('#loginForm button').disabled=true;return}
- const db=window.supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
- let records=[];
- function showApp(user){const ok=!!user;loginPanel.classList.toggle('hidden',ok);dashboard.classList.toggle('hidden',!ok);logout.classList.toggle('hidden',!ok);if(ok)load()}
- db.auth.getSession().then(({data})=>showApp(data.session&&data.session.user));
- document.getElementById('loginForm').addEventListener('submit',async e=>{e.preventDefault();err.textContent='';const {error}=await db.auth.signInWithPassword({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value});if(error){err.textContent='Sign-in failed. Check your email/password and Supabase Auth settings.';return}sessionStorage.setItem('vehikal_admin_session','1');showApp(true)});
- logout.addEventListener('click',async()=>{sessionStorage.removeItem('vehikal_admin_session');await db.auth.signOut();showApp(false)});
- document.getElementById('refresh').addEventListener('click',load);
- document.getElementById('reset').addEventListener('click',async()=>{if(!confirm('Delete all Vehikal.com visitor records? This cannot be undone.'))return;status.textContent='Resetting…';const {error}=await db.rpc('reset_vehikal_visitor_logs');if(error){status.textContent='Reset failed. Check that the SQL function is installed and your account has permission.';return}await load()});
- document.getElementById('search').addEventListener('input',render);document.getElementById('kind').addEventListener('change',render);
- function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
- async function load(){status.textContent='Loading records…';const {data,error}=await db.from('visitor_logs').select('id,domain,visitor_type,page_path,referrer,user_agent,timestamp').eq('domain','vehikal.com').order('visited_at',{ascending:false}).limit(2000);if(error){status.textContent='Could not load records. Confirm table columns and authenticated-user SELECT policy in Supabase.';return}records=data||[];document.getElementById('total').textContent=records.length;document.getElementById('humans').textContent=records.filter(x=>x.visitor_type==='human').length;document.getElementById('bots').textContent=records.filter(x=>x.visitor_type==='bot').length;render()}
- function render(){const q=document.getElementById('search').value.toLowerCase(),kind=document.getElementById('kind').value;const shown=records.filter(x=>(kind==='all'||x.visitor_type===kind)&&[x.page_path,x.referrer,x.user_agent].some(v=>String(v||'').toLowerCase().includes(q)));rows.innerHTML=shown.map(x=>'<tr><td>'+esc(x.timestamp?new Date(x.timestamp).toLocaleString():'—')+'</td><td><span class="pill '+(x.visitor_type==='bot'?'bot':'human')+'">'+esc(x.visitor_type||'unknown')+'</span></td><td>'+esc(x.page_path||'—')+'</td><td>'+esc(x.referrer||'Direct / none')+'</td><td>'+esc(x.user_agent||'—')+'</td></tr>').join('');status.textContent='Showing '+shown.length+' of '+records.length+' recent records (maximum 2,000).'}
+  const cfg = window.VEHIKAL_VISITOR_CONFIG || {};
+  const valid = cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY &&
+    !cfg.SUPABASE_URL.includes("PASTE_") &&
+    !cfg.SUPABASE_ANON_KEY.includes("PASTE_");
+
+  const loginPanel = document.getElementById("loginPanel");
+  const dashboard = document.getElementById("dashboard");
+  const logout = document.getElementById("logout");
+  const err = document.getElementById("loginError");
+  const status = document.getElementById("status");
+  const rows = document.getElementById("rows");
+  const loginButton = document.getElementById("loginButton");
+
+  if (!valid || !window.supabase) {
+    err.textContent = "Setup required: check visitor-config.js and the Supabase connection.";
+    loginButton.disabled = true;
+    return;
+  }
+
+  const db = window.supabase.createClient(
+    cfg.SUPABASE_URL,
+    cfg.SUPABASE_ANON_KEY
+  );
+  let records = [];
+
+  function showApp(user) {
+    const ok = !!user;
+    loginPanel.classList.toggle("hidden", ok);
+    dashboard.classList.toggle("hidden", !ok);
+    logout.classList.toggle("hidden", !ok);
+    if (ok) load();
+  }
+
+  db.auth.getSession()
+    .then(({data, error}) => {
+      if (error) throw error;
+      showApp(data.session && data.session.user);
+    })
+    .catch(() => {
+      err.textContent = "Could not check login session. Please refresh the page.";
+    });
+
+  document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    err.textContent = "";
+    loginButton.disabled = true;
+    loginButton.textContent = "Signing in…";
+
+    try {
+      const {data, error} = await db.auth.signInWithPassword({
+        email: "merlinbigoagency@gmail.com",
+        password: document.getElementById("password").value
+      });
+
+      if (error) throw error;
+      document.getElementById("password").value = "";
+      showApp(data.user);
+    } catch (error) {
+      err.textContent = "Login failed. Check the admin password and Supabase Auth settings.";
+    } finally {
+      loginButton.disabled = false;
+      loginButton.textContent = "Sign in securely";
+    }
+  });
+
+  logout.addEventListener("click", async function() {
+    await db.auth.signOut();
+    showApp(null);
+    err.textContent = "";
+  });
+
+  document.getElementById("refresh").addEventListener("click", load);
+
+  document.getElementById("reset").addEventListener("click", async function() {
+    if (!confirm("Delete all Vehikal.com visitor records? This cannot be undone.")) return;
+    status.textContent = "Resetting…";
+    const {error} = await db.rpc("reset_vehikal_visitor_logs");
+    if (error) {
+      status.textContent = "Reset failed. Check that the reset function exists and your account has permission.";
+      return;
+    }
+    await load();
+  });
+
+  document.getElementById("search").addEventListener("input", render);
+  document.getElementById("kind").addEventListener("change", render);
+
+  function esc(s) {
+    return String(s ?? "").replace(/[&<>"']/g, c => ({
+      "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+    }[c]));
+  }
+
+  async function load() {
+    status.textContent = "Loading records…";
+    const {data, error} = await db
+      .from("visitor_logs")
+      .select("id,domain,visitor_type,city,country,referrer,user_agent,timestamp")
+      .eq("domain", "vehikal.com")
+      .order("timestamp", {ascending:false})
+      .limit(2000);
+
+    if (error) {
+      status.textContent = "Could not load records. Check the table columns and authenticated-user SELECT policy in Supabase.";
+      return;
+    }
+
+    records = data || [];
+    document.getElementById("total").textContent = records.length;
+    document.getElementById("humans").textContent = records.filter(x => x.visitor_type === "human").length;
+    document.getElementById("bots").textContent = records.filter(x => x.visitor_type === "bot").length;
+    render();
+  }
+
+  function render() {
+    const q = document.getElementById("search").value.toLowerCase();
+    const kind = document.getElementById("kind").value;
+    const shown = records.filter(x =>
+      (kind === "all" || x.visitor_type === kind) &&
+      [x.city, x.country, x.referrer, x.user_agent].some(v =>
+        String(v || "").toLowerCase().includes(q)
+      )
+    );
+
+    rows.innerHTML = shown.map(x =>
+      "<tr><td>" + esc(x.timestamp ? new Date(x.timestamp).toLocaleString() : "—") +
+      "</td><td><span class=\"pill " + (x.visitor_type === "bot" ? "bot" : "human") +
+      "\">" + esc(x.visitor_type || "unknown") +
+      "</span></td><td>" + esc([x.city, x.country].filter(Boolean).join(", ") || "Unknown") +
+      "</td><td>" + esc(x.referrer || "Direct / none") +
+      "</td><td>" + esc(x.user_agent || "—") + "</td></tr>"
+    ).join("");
+
+    status.textContent = "Showing " + shown.length + " of " + records.length +
+      " recent records (maximum 2,000).";
+  }
 })();
 </script>
-</body></html>
+</body>
+</html>
