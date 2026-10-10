@@ -1,6 +1,4 @@
-// Use only the Supabase project URL and publishable/anon key here.
-// NEVER use a service_role or secret key in browser code.
 window.VEHIKAL_VISITOR_CONFIG = {
-  SUPABASE_URL: "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE",
-  SUPABASE_ANON_KEY: "PASTE_YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY_HERE"
+  SUPABASE_URL: "https://oznaxystqkkmaipqmjay.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_ZN3bUvIig48tAuwbOrdhug_NZ7VOgnJ"
 };
