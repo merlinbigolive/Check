@@ -4,17 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#031126">
+
 <meta name="description" content="Discover Vehikal.com, a memorable automotive domain for sale. Ideal for vehicle dealerships, car marketplaces, auto parts, EV brands, rentals, logistics and automotive businesses.">
 <meta name="robots" content="index, follow">
+
 <title>Vehikal.com® — Premium Automotive Domain for Sale</title>
+
 <link rel="canonical" href="https://vehikal.com/">
+<link rel="stylesheet" href="styles.css">
+
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vehikal.com/">
 <meta property="og:title" content="Vehikal.com® — Premium Automotive Domain for Sale">
 <meta property="og:description" content="Discover Vehikal.com, a memorable automotive domain for sale. Ideal for vehicle dealerships, car marketplaces, auto parts, EV brands, rentals, logistics and automotive businesses.">
+
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vehikal.com® — Premium Automotive Domain for Sale">
 <meta name="twitter:description" content="Discover Vehikal.com, a memorable automotive domain for sale. Ideal for vehicle dealerships, car marketplaces, auto parts, EV brands, rentals, logistics and automotive businesses.">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -24,30 +31,109 @@
   "description": "Discover Vehikal.com, a memorable automotive domain for sale. Ideal for vehicle dealerships, car marketplaces, auto parts, EV brands, rentals, logistics and automotive businesses."
 }
 </script>
-<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 <main class="landing">
   <div class="reference-art" aria-hidden="true"></div>
+
   <header class="topbar">
-    <div><span class="icon">◇</span><span>PREMIUM DOMAIN FOR SALE</span></div>
-    <div><span class="icon">♙</span><span>SECURE DOMAIN ACQUISITION</span></div>
-    <div><span class="icon">✧</span><span>BUILT FOR THE VEHICLE ECOSYSTEM</span></div>
+    <div>
+      <span class="icon">◇</span>
+      <span>PREMIUM DOMAIN FOR SALE</span>
+    </div>
+
+    <div>
+      <span class="icon">♙</span>
+      <span>SECURE DOMAIN ACQUISITION</span>
+    </div>
+
+    <div>
+      <span class="icon">✧</span>
+      <span>BUILT FOR THE VEHICLE ECOSYSTEM</span>
+    </div>
   </header>
 
   <section class="purchase" aria-label="Acquire Vehikal.com">
     <a class="buy-button" href="mailto:Acquire@Vehikal.Com?subject=Vehikal.com%20Domain%20Inquiry">
       <span class="person" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M12 12a4.1 4.1 0 1 0 0-8.2 4.1 4.1 0 0 0 0 8.2ZM4 21v-2.2a8 8 0 0 1 16 0V21Z"/></svg>
+        <svg viewBox="0 0 24 24">
+          <path d="M12 12a4.1 4.1 0 1 0 0-8.2 4.1 4.1 0 0 0 0 8.2ZM4 21v-2.2a8 8 0 0 1 16 0V21Z"/>
+        </svg>
       </span>
-      <span class="button-copy"><strong>BUY NOW</strong><small>Acquire@Vehikal.Com</small></span>
+
+      <span class="button-copy">
+        <strong>BUY NOW</strong>
+        <small>Acquire@Vehikal.Com</small>
+      </span>
     </a>
   </section>
+
   <div class="bottom-cover" aria-hidden="true"></div>
 </main>
-  
+
+<!-- Supabase Visitor Tracker -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/visitor-config.js"></script>
-<script src="/visitor-tracker.js"></script>
+
+<script>
+(function () {
+  "use strict";
+
+  const hostname = location.hostname
+    .replace(/^www\./i, "")
+    .toLowerCase();
+
+  if (hostname !== "vehikal.com") return;
+
+  const SUPABASE_URL = "https://oznaxystqkkmaipqmjay.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_ZN3bUvIig48tAuwbOrdhug_NZ7VOgnJ";
+
+  // Count only once per browser tab session.
+  const VISIT_KEY = "vehikal_visit_recorded";
+
+  if (sessionStorage.getItem(VISIT_KEY)) return;
+
+  if (!window.supabase) {
+    console.error("Vehikal tracker: Supabase library failed to load.");
+    return;
+  }
+
+  const client = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  const userAgent = navigator.userAgent || "";
+
+  const isBot =
+    /bot|crawler|spider|slurp|headless|facebookexternalhit/i.test(userAgent);
+
+  async function recordVisit() {
+    const { error } = await client
+      .from("visitor_logs")
+      .insert({
+        domain: "vehikal.com",
+        visitor_type: isBot ? "bot" : "human",
+        user_agent: userAgent.slice(0, 1000),
+        referrer: document.referrer || null,
+        page_path: location.pathname,
+        timestamp: new Date().toISOString()
+      });
+
+    if (error) {
+      console.error("Vehikal visitor recording failed:", error.message);
+      return;
+    }
+
+    sessionStorage.setItem(VISIT_KEY, "1");
+    console.log("Vehikal visitor recorded successfully.");
+  }
+
+  recordVisit().catch(function (error) {
+    console.error("Vehikal visitor tracker error:", error);
+  });
+})();
+</script>
+
 </body>
 </html>
